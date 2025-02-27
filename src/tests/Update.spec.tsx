@@ -2,6 +2,7 @@ import { UpdateStudyRecord } from "@/supabase/update";
 import { supabase } from "@/utils/supabase";
 import { Row } from "@/domain/Row";
 
+//モックの宣言
 jest.mock("@/utils/supabase", () => ({
   supabase: {
     from: jest.fn(),
