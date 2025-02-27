@@ -13,7 +13,7 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { FC, useEffect, useState, } from "react";
+import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { UpdateStudyRecord } from "@/supabase/update";
 

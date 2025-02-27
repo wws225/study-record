@@ -1,6 +1,4 @@
 import { supabase } from "@/utils/supabase";
-import { Row } from "@/domain/Row";
-import { InsertStudyRecord } from "@/supabase/insert";
 import { DeleteStudyRecord } from "@/supabase/delete";
 
 jest.mock("@/utils/supabase", () => ({
