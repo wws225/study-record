@@ -1,8 +1,10 @@
 import { Dialog } from "@/dialog/Dialog";
 import { Row } from "@/domain/Row";
 import { DeleteStudyRecord } from "@/supabase/delete";
-import { Button, Flex, HStack, Table } from "@chakra-ui/react";
+import {  Flex, HStack, Table } from "@chakra-ui/react";
 import { useState } from "react";
+import { MdModeEdit } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 
 type Props = {
     rows: Row[]
@@ -10,17 +12,17 @@ type Props = {
 
 export const TableViewer = (props: Props) => {
     const { rows } = props
-  const [open, setOpen] = useState(false)
-  const [id,setId] = useState("")
-  const [title, setTitle] = useState("")
-  const [time, setTime] = useState(0)
+    const [open, setOpen] = useState(false)
+    const [id, setId] = useState("")
+    const [title, setTitle] = useState("")
+    const [time, setTime] = useState(0)
     const onClickEdit = (row: Row) =>
-        () =>{
+        () => {
             setOpen(true)
             setId(row.id!)
             setTitle(row.title)
             setTime(row.time)
-        } 
+        }
 
     const onClickDelete = (id: string) => () => DeleteStudyRecord(id);
 
@@ -42,15 +44,31 @@ export const TableViewer = (props: Props) => {
                             <Table.Row key={row.id}>
                                 <Table.Cell>{row.title}</Table.Cell>
                                 <Table.Cell>{row.time}</Table.Cell>
-                                <Table.Cell><Button data-testid="editButton" onClick={onClickEdit(row)}>編集</Button></Table.Cell>
-                                <Table.Cell><Button onClick={onClickDelete(row.id!)}>削除</Button></Table.Cell>
+                                <Table.Cell>
+                                    <MdModeEdit
+                                        data-testid="editButton"
+                                        onClick={onClickEdit(row)}
+                                        cursor="pointer"
+                                    >
+                                        編集
+                                    </MdModeEdit>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <MdDeleteForever
+                                        onClick={onClickDelete(row.id!)}
+                                        cursor="pointer"
+
+                                    >
+                                        削除
+                                    </MdDeleteForever>
+                                </Table.Cell>
                             </Table.Row>
                         ))}
                     </Table.Body>
                 </Table.Root>
             </HStack>
-            <Dialog isNew={false} open={open} 
-            setOpen={setOpen} id={id} title={title} time={time}/>
+            <Dialog isNew={false} open={open}
+                setOpen={setOpen} id={id} title={title} time={time} />
         </Flex>
     );
 };

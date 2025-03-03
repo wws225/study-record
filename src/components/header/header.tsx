@@ -9,7 +9,7 @@ export const Header :FC = () => {
                 as="h1"
                 fontWeight={"bold"}
                 textAlign={"center"}
-                fontSize={"5xl"}
+                fontSize={"3xl"}
             >
                 シン・学習記録アプリ
             </Heading>
